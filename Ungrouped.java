@@ -26,6 +26,11 @@ public class Ungrouped {
     int cont;
     double mean;
     double median;
+    double variance;
+    double standarddeviation;
+    double max;
+    double min;
+    double range;
     LinkedList mode = new LinkedList();
     
     Ungrouped() {
@@ -177,13 +182,19 @@ public class Ungrouped {
     
     void displayMean() {
         mean = findMean(inputarray);
+        variance = findVariance(inputarray);
+        standarddeviation = findStandardDeviation(variance);
         System.out.println("\nMean: " + mean);
-    }
+        System.out.println("\nVariance: " + variance);
+        System.out.println("\nStandard Deviation: " + standarddeviation);
+    }//DONE
     
     void displayMedian() {
         median = findMedian(inputarray);
+        range = findRange(inputarray);
         System.out.println("\nMedian: " + median);
-    }
+        System.out.println("\nRange: " + range);
+    }//DONE
     
     void displayMode() {
         mode = findMode(inputarray);
@@ -199,13 +210,13 @@ public class Ungrouped {
         else
         if(mode.size() > 2)
             System.out.print("Multimodal Distribution");
-    }
+    }//DONE
     
     void displayAll() {
         displayMean();
         displayMedian();
         displayMode();
-    }
+    }//DONE
     
     double findMean(Double[] arrinp) {
         double ans;
@@ -215,6 +226,24 @@ public class Ungrouped {
         }
         ans = sum/maxin;
         return ans;
+    }//DONE
+    
+    double findVariance(Double[] arrinp) {
+        double ave;
+        double sqrd;
+        double sum = 0;
+        double minus = 0;
+        for(int i = 0; i < maxin; i++) {
+            minus = (inputarray[i] - mean);
+            sqrd = minus*minus;
+            sum = sum + sqrd;
+        }
+        ave = sum/(maxin-1);
+        return ave;
+    }//DONE
+    
+    double findStandardDeviation(Double variance) {
+        return Math.sqrt(variance);
     }//DONE
     
     double findMedian(Double[] arrinp) {
@@ -228,6 +257,30 @@ public class Ungrouped {
             ans = arrinp[(maxin/2)];
         
         return ans;
+    }//DONE
+    
+    double findRange(Double[] arrinp) {
+        min = findMin(arrinp);
+        max = findMax(arrinp);
+        return max-min;
+    }//DONE
+    
+    double findMin(Double[] arrinp) {
+        double tempmin = arrinp[0];
+        for(int i = 1; i < maxin; i++) {
+            if(arrinp[i] < tempmin)
+                tempmin = arrinp[i];
+        }
+        return tempmin;
+    }//DONE
+    
+    double findMax(Double[] arrinp) {
+        double tempmax = arrinp[0];
+        for(int i = 1; i < maxin; i++) {
+            if(arrinp[i] > tempmax)
+                tempmax = arrinp[i];
+        }
+        return tempmax;
     }//DONE
     
     Set findUniqvalues(Double[] arrinp) {
@@ -289,7 +342,7 @@ public class Ungrouped {
         dataInterpretation = sc.nextLine();
     }//DONE
     
-    void showInterpretation() {//DONE
+    void showInterpretation() {
         System.out.println("\n\nInterpretation of output: " + dataInterpretation);
-    }
+    }//DONE
 }
