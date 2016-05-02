@@ -184,9 +184,9 @@ public class Ungrouped {
         mean = findMean(inputarray);
         variance = findVariance(inputarray);
         standarddeviation = findStandardDeviation(variance);
-        System.out.println("\nMean: " + mean);
-        System.out.println("\nVariance: " + variance);
-        System.out.println("\nStandard Deviation: " + standarddeviation);
+        System.out.printf("\nMean: %.2f", mean);
+        System.out.printf("\nVariance: %.2f", variance);
+        System.out.printf("\nStandard Deviation: %.2f", standarddeviation);
     }//DONE
     
     void displayMedian() {
