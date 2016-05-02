@@ -47,10 +47,13 @@ public class Ungrouped {
             find();
             inputInterpretation();
             showInterpretation();
-            System.out.print("\n\nWhat do you want to do?\n[1] Reuse the data    "
-                    + "[2] Input new data\nYour choice: ");
+            System.out.print("\n\nWhat do you want to do?\n"
+                    + "[1] Input new data   [2] Exit Program   [Any number except "
+                    + "1 and 2] Reuse data\nYour choice: ");
             cont = sc.nextInt();
-        } while((cont < 1 || cont > 2) || cont == 1);
+            if(cont == 2)
+                break;
+        } while((cont < 1 || cont > 2));
     }//DONE BUT COULD BE BETTER
     
     void getMaxin() {
@@ -184,16 +187,16 @@ public class Ungrouped {
         mean = findMean(inputarray);
         variance = findVariance(inputarray);
         standarddeviation = findStandardDeviation(variance);
-        System.out.printf("\nMean: %.2f", mean);
-        System.out.printf("\nVariance: %.2f", variance);
-        System.out.printf("\nStandard Deviation: %.2f", standarddeviation);
+        System.out.printf("\nMean: %.2f\n", mean);
+        System.out.printf("\nVariance: %.2f\n", variance);
+        System.out.printf("\nStandard Deviation: %.2f\n", standarddeviation);
     }//DONE
     
     void displayMedian() {
         median = findMedian(inputarray);
         range = findRange(inputarray);
-        System.out.println("\nMedian: " + median);
-        System.out.println("\nRange: " + range);
+        System.out.printf("\nMedian: %.2f\n", median);
+        System.out.printf("\nRange: %.2f\n", range);
     }//DONE
     
     void displayMode() {
