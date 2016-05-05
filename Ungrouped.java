@@ -48,9 +48,11 @@ public class Ungrouped {
             inputInterpretation();
             showInterpretation();
             System.out.print("\n\nWhat do you want to do?\n"
-                    + "[1] Input new data   [2] Exit Program   [Any number except "
+                    + "[1] Input new data for ungrouped data   [2] Back to main menu   [Any number except "
                     + "1 and 2] Reuse data\nYour choice: ");
             cont = sc.nextInt();
+            if(cont == 1)
+                runUngroupedanalysis();
             if(cont == 2)
                 break;
         } while((cont < 1 || cont > 2));
@@ -146,7 +148,6 @@ public class Ungrouped {
                     System.out.println("\nDo you want to continue changing values?");
                     System.out.printf("Enter 0 if Yes, 1 if No.\nYou choose: ");
                     cont = sc.nextInt();
-                    System.out.println(cont);
                     if(cont < 0 || cont > 1)
                         System.out.println("Input not in range.");
                 } while(cont < 0 || cont > 1);
@@ -158,7 +159,48 @@ public class Ungrouped {
     }//DONE
     
     void find() {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);LinkedList Mod = new <Mode>LinkedList();
+//        double temp = max();
+//        int ctr = 0;
+//        Mode mode[];
+//        for (int i = 0; i < data1.length; i++) {
+//            if (data1[i][2] == temp) {
+//                ctr++;
+////                for(int cnt = 0; cnt < Mod.size(); cnt++){
+////                    if(data1[i][2] == ((Mode)(Mod.get(cnt))).freq)
+////                            Mod.add(data1[i]);
+////                }
+//            }
+//        }
+//        if(ctr != data1.length){
+//            mode = new Mode[ctr];
+//            for (int i = 0, modei = 0; i < data1.length; i++) {
+//                if (data1[i][2] == temp && temp != 1) {
+//                    mode[modei] = new Mode(data1[i][0], data1[i][1]);
+//                    modei++;
+//                }
+//            }
+//            if (mode.length == 0) {
+//                    System.out.println("\nMode: no mode");
+//            }
+//            else { 
+//                System.out.println("\nModes: ");
+//                for(int i = 0; i < data1.length; i++) {
+//                    if(data1[i][2] == temp) {
+//                        System.out.println(data1[i][0] + " - " + data1[i][1]);
+//                    }
+//                }
+//                if (ctr == 1) {
+//                    System.out.println("Unimodal");
+//                } else if (ctr == 2) {
+//                    System.out.println("Bimodal");
+//                } else if (ctr >= 3) {
+//                    System.out.println("Multimodal");
+//                }
+//            }
+//        }
+//        else
+//            System.out.println("\nMode: no mode");
         int choice = 0;
         do {
             System.out.println("\nWhat do you want to do?");
@@ -324,17 +366,22 @@ public class Ungrouped {
         setUniqvalues();
         printUniqvalues();
         int max = uniqarr[0].freq;
+        int min = uniqarr[0].freq;
         for(int i = 1; i < uniqarr.length; i++) {
             if(uniqarr[i].freq > max) {
                 max = uniqarr[i].freq;
             }
+            if(uniqarr[i].freq < min)
+                min = uniqarr[i].freq;
         }
         for(int i = 0; i < uniqarr.length; i++) {
             if(uniqarr[i].freq == max)
                 mod.add(uniqarr[i].strvalue);
         }
-        if(max == 1)
-            return new LinkedList();
+        if(uniqarr.length != 1)
+            if(max == min)
+                return new LinkedList();
+            
         return mod;
     }//DONE
     
